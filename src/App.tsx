@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { NewRequestPage } from './pages/NewRequest';
-import { RequestsBoardPage } from './pages/RequestsBoard';
+import RequestsBoardPage from './pages/RequestsBoard';
 import { Truck, ClipboardList, PlusCircle } from 'lucide-react';
 
 const Navbar: React.FC = () => {
