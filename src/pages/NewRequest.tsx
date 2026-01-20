@@ -13,7 +13,6 @@ export const NewRequestPage: React.FC = () => {
         waste_stream_name: '',
         process_description: '',
         waste_description: '',
-        waste_classification: '',
         empty_packaging_protocol: '',
         waste_amount: '',
         raw_or_waste: 'פסולת',
@@ -32,7 +31,6 @@ export const NewRequestPage: React.FC = () => {
         contact_name: '',
         contact_email: '',
         contact_phone: '',
-        fax: '',
         business_activity: '',
 
         waste_items: [{ ...initialWasteItem }],
@@ -151,7 +149,6 @@ export const NewRequestPage: React.FC = () => {
                         <Input label="איש קשר" name="contact_name" value={formData.contact_name} onChange={handleChange} required />
                         <Input label="אימייל" type="email" name="contact_email" value={formData.contact_email} onChange={handleChange} required />
                         <Input label="טלפון" type="tel" name="contact_phone" value={formData.contact_phone} onChange={handleChange} required />
-                        <Input label="פקס" name="fax" value={formData.fax} onChange={handleChange} />
                         <Input label="תחום עיסוק" name="business_activity" value={formData.business_activity} onChange={handleChange} />
                     </div>
                 </div>
@@ -204,6 +201,7 @@ export const NewRequestPage: React.FC = () => {
                                     ))}
                                 </tr>
                                 {/* Waste Description */}
+                                {/* 
                                 <tr>
                                     <td style={{ fontWeight: 'bold', verticalAlign: 'top', paddingTop: '10px', textAlign: 'right', padding: '0 0 0 20px' }}>תיאור פסולת</td>
                                     {formData.waste_items.map((item, index) => (
@@ -212,15 +210,8 @@ export const NewRequestPage: React.FC = () => {
                                         </td>
                                     ))}
                                 </tr>
-                                {/* Waste Classification */}
-                                <tr>
-                                    <td style={{ fontWeight: 'bold', textAlign: 'right', padding: '0 0 0 20px' }}>סיווג פסולת</td>
-                                    {formData.waste_items.map((item, index) => (
-                                        <td key={index} style={{ padding: '0 15px' }}>
-                                            <Input label="" name="waste_classification" value={item.waste_classification} onChange={(e) => handleWasteItemChange(index, e)} style={{ marginBottom: 0 }} />
-                                        </td>
-                                    ))}
-                                </tr>
+                                */}
+
                                 {/* Empty Packaging Protocol */}
                                 <tr>
                                     <td style={{ fontWeight: 'bold', textAlign: 'right', padding: '0 0 0 20px' }}>פרוטוקול אריזות ריקות</td>
@@ -271,7 +262,24 @@ export const NewRequestPage: React.FC = () => {
                                     <td style={{ fontWeight: 'bold', textAlign: 'right', padding: '0 0 0 20px' }}>אריזה</td>
                                     {formData.waste_items.map((item, index) => (
                                         <td key={index} style={{ padding: '0 15px' }}>
-                                            <Input label="" name="packaging" value={item.packaging} onChange={(e) => handleWasteItemChange(index, e)} style={{ marginBottom: 0 }} />
+                                            <Select
+                                                label=""
+                                                name="packaging"
+                                                value={item.packaging}
+                                                onChange={(e) => handleWasteItemChange(index, e)}
+                                                options={[
+                                                    { value: 'קוביה', label: 'קוביה' },
+                                                    { value: 'חבית פלסטיק', label: 'חבית פלסטיק' },
+                                                    { value: 'חבית מתכת', label: 'חבית מתכת' },
+                                                    { value: 'חביונית', label: 'חביונית' },
+                                                    { value: 'ג\'ריקן', label: 'ג\'ריקן' },
+                                                    { value: 'משטח', label: 'משטח' },
+                                                    { value: 'אריזות קטנות', label: 'אריזות קטנות' },
+                                                    { value: 'בקבוק', label: 'בקבוק' },
+                                                    { value: 'מיכלית', label: 'מיכלית' }
+                                                ]}
+                                                style={{ marginBottom: 0 }}
+                                            />
                                         </td>
                                     ))}
                                 </tr>
@@ -280,7 +288,21 @@ export const NewRequestPage: React.FC = () => {
                                     <td style={{ fontWeight: 'bold', textAlign: 'right', padding: '0 0 0 20px' }}>תדירות פינוי</td>
                                     {formData.waste_items.map((item, index) => (
                                         <td key={index} style={{ padding: '0 15px' }}>
-                                            <Input label="" name="pickup_frequency" value={item.pickup_frequency} onChange={(e) => handleWasteItemChange(index, e)} style={{ marginBottom: 0 }} />
+                                            <Select
+                                                label=""
+                                                name="pickup_frequency"
+                                                value={item.pickup_frequency}
+                                                onChange={(e) => handleWasteItemChange(index, e)}
+                                                options={[
+                                                    { value: 'שבועי', label: 'שבועי' },
+                                                    { value: 'חודשי', label: 'חודשי' },
+                                                    { value: 'רבעוני', label: 'רבעוני' },
+                                                    { value: 'חד פעמי', label: 'חד פעמי' },
+                                                    { value: 'חצי שנתי', label: 'חצי שנתי' },
+                                                    { value: 'שנתי', label: 'שנתי' }
+                                                ]}
+                                                style={{ marginBottom: 0 }}
+                                            />
                                         </td>
                                     ))}
                                 </tr>

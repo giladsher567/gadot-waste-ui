@@ -86,7 +86,6 @@ const normalizeWasteItem = (item: any): WasteItem => {
             waste_stream_name: '',
             process_description: '',
             waste_description: '',
-            waste_classification: '',
             empty_packaging_protocol: '',
             waste_amount: '',
             raw_or_waste: 'פסולת',
@@ -103,7 +102,6 @@ const normalizeWasteItem = (item: any): WasteItem => {
         waste_stream_name: item.waste_stream_name || item['Stream Name'] || '',
         process_description: item.process_description || item['Process Description'] || '',
         waste_description: item.waste_description || item['Waste Description'] || '',
-        waste_classification: item.waste_classification || item['Classification'] || '',
         empty_packaging_protocol: item.empty_packaging_protocol || '',
         waste_amount: item.waste_amount ?? item['Amount'] ?? '',
         raw_or_waste: item.raw_or_waste || 'פסולת',
@@ -139,7 +137,6 @@ const normalizeWasteRequest = (data: any): WasteRequest => {
         contact_name: data.contact_name || data['Contact Name'] || '',
         contact_email: data.contact_email || data['Contact Email'] || '',
         contact_phone: data.contact_phone || data['Contact Phone'] || '',
-        fax: data.fax,
         business_activity: data.business_activity,
 
         waste_items: rawItems.map(normalizeWasteItem),

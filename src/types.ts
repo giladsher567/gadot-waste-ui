@@ -15,7 +15,6 @@ export interface WasteItem {
     waste_stream_name: string;
     process_description: string;
     waste_description: string;
-    waste_classification: string;
     empty_packaging_protocol: string;
     waste_amount: string;
     raw_or_waste: string;
@@ -39,7 +38,6 @@ export interface WasteRequest {
     contact_name: string;
     contact_email: string;
     contact_phone: string;
-    fax?: string;
     business_activity?: string;
 
     // Waste Items
