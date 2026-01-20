@@ -12,9 +12,11 @@ export type PhysicalState = "אבקה" | "נוזל" | "מוצק" | "בוצה" | 
 export type RawOrWaste = "חומר גלם" | "פסולת";
 
 export interface WasteItem {
+    waste_item_id?: string;
     waste_stream_name: string;
     process_description: string;
     waste_description: string;
+    waste_classification?: string;
     empty_packaging_protocol: string;
     waste_amount: string;
     raw_or_waste: string;
@@ -59,8 +61,14 @@ export interface WasteRequest {
     sent_to_chemistry_at?: string;
     photos?: string[]; // URLs
     chemistry_reply_text?: string;
+    communication_log?: string; // JSON string of LogItem[]
 }
 
 export interface CreateRequestPayload extends Omit<WasteRequest, 'request_id' | 'created_at'> {
     // Photos are handled as a list of filenames in the JSON payload
+}
+
+export interface UpdateRequestPayload extends Partial<WasteRequest> {
+    new_note?: string;
+    trigger_email_notification?: boolean;
 }

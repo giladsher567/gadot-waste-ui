@@ -99,6 +99,7 @@ const normalizeWasteItem = (item: any): WasteItem => {
     }
 
     return {
+        waste_item_id: item.waste_item_id || item.id || '',
         waste_stream_name: item.waste_stream_name || item['Stream Name'] || '',
         process_description: item.process_description || item['Process Description'] || '',
         waste_description: item.waste_description || item['Waste Description'] || '',
@@ -154,6 +155,7 @@ const normalizeWasteRequest = (data: any): WasteRequest => {
         sent_to_chemistry_at: normalizeDate(data.sent_to_chemistry_at),
         photos: Array.isArray(data.photos) ? data.photos : [],
         chemistry_reply_text: data.chemistry_reply_text,
+        communication_log: data.communication_log || '[]',
     };
 
     return req as WasteRequest;
@@ -181,7 +183,7 @@ export const api = {
     },
 
     // UPDATE
-    updateRequest: async (request_id: string, updates: Partial<WasteRequest>): Promise<void> => {
+    updateRequest: async (request_id: string, updates: CreateRequestPayload | Partial<WasteRequest> | any): Promise<void> => {
         const response = await fetch(API_UPDATE_REQUEST, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
